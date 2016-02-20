@@ -1,0 +1,28 @@
+<html>
+  <head>
+    {% if title %}
+    <title> [[ title ]] - Magus</title>
+    {% else %}
+    <title>Welcome to MAGUS</title>
+    {% endif %}
+  </head>
+  <bdoy>
+    <div>MAGUS:
+      <a href="/index">Home</a>
+      <a href="/login">Login</a>
+      <a href="/foo">Foo</a>
+    </div>
+    <hr>
+   {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </bdoy>
+</html>
+  
