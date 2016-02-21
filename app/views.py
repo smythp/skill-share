@@ -22,23 +22,36 @@ def make_dict(cursor):
 @app.route('/')
 @app.route('/index')
 def index():
+    return render_template('index.html')
 
+@app.route('/learn')
+def learn():
     conn = sqlite3.connect("skill.db")
     c = conn.cursor()
-    out = c.execute("SELECT skill_name,skill_description FROM skill;")
+    out = c.execute("SELECT skill_name,skill_description FROM learn_skill;")
 
     out = out.fetchall()
-
 
     skills = []
     skills_description = []
     for skill in out:
-        skills.append(skill[0])
-        skills_description.append(skill[1])
+        skills.append((skill[0],skill[1],))
+    return render_template('learn.html',title='Teach',skills=skills)
+    
 
-    print(skills,skills_description)
+@app.route('/teach')
+def teach():
+    conn = sqlite3.connect("skill.db")
+    c = conn.cursor()
+    out = c.execute("SELECT skill_name,skill_description FROM teach_skill;")
 
-    return render_template('index.html',title='Home',skills=skills,skills_description=skills_description)
+    out = out.fetchall()
+
+    skills = []
+    skills_description = []
+    for skill in out:
+        skills.append((skill[0],skill[1],))
+    return render_template('teach.html',title='Teach',skills=skills)
     
 @app.route('/foo')
 def foo():

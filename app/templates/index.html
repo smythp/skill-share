@@ -2,11 +2,8 @@
   <body>
     {% extends "base.html" %}
     {% block content %}
-    {% for skill in skills %}
-    <div><p>I want to learn {{ skill }} <br></div>
-
-    {% endfor %}
-
+    <p>Home page</p>
+    <p><a href="/learn">Learn</a> or <a href="/teach">Teach</a></p>
     {% endblock %}
   </body>
 </html>
